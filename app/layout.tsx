@@ -35,7 +35,7 @@ export default async function RootLayout({
               {children}
             </main>
             <Footer />
-            <Toaster />
+            <Toaster richColors/>
           </ThemeProvider>
         </body>
       </html>

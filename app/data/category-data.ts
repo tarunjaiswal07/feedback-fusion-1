@@ -7,13 +7,9 @@ import {
   Wrench,
 } from "lucide-react";
 
-export const CATEGORIES_TYPES = [
-  "Feature",
-  "Improvement",
-  "Bug",
-  "Design",
-  "Other",
-];
+export const CATEGORIES_TYPES = ["Feature", "Improvement", "Bug", "Design", "Other"];
+
+
 
 const CATEGORIES = {
   Feature: {

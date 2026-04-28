@@ -49,7 +49,7 @@ export async function syncCurrentUser() {
             clerkUser.lastName || ""
           }`.trim(),
           image: clerkUser.imageUrl,
-          role: isFirstUser ? "admin" : "user",
+          role: isFirstUser ? Role.ADMIN : Role.USER,
         },
       });
       console.log(`New user created: ${email} with role: ${dbUser.role}`);
