@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { syncCurrentUser } from "@/lib/sync-user";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<Response> {
   try {
     const dbUser = await syncCurrentUser();
     if (!dbUser) {
@@ -11,14 +11,11 @@ export async function POST(request: NextRequest) {
     const { postId } = await request.json();
     if (!postId) {
       return NextResponse.json(
-        {
-          error: "Post Id is required",
-        },
+        { error: "Post Id is required" },
         { status: 400 }
       );
     }
 
-    // Check if vote already exists
     const existingVote = await prisma.vote.findUnique({
       where: {
         userId_postId: {
@@ -29,15 +26,11 @@ export async function POST(request: NextRequest) {
     });
 
     if (existingVote) {
-      // Remove vote (toggle)
       await prisma.vote.delete({
-        where: {
-          id: existingVote.id,
-        },
+        where: { id: existingVote.id },
       });
       return NextResponse.json({ voted: false });
     } else {
-      // Add vote (toggle)
       await prisma.vote.create({
         data: {
           userId: dbUser.id,
@@ -49,9 +42,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error toggling vote: ", error);
     return NextResponse.json(
-      {
-        error: "Internal server error",
-      },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }
