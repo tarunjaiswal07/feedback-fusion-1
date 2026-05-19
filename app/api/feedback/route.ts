@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     try {
         const dbUser = await syncCurrentUser();
         if (!dbUser) { 
-        return NextResponse.json({error: "Unauthorized"}), { status: 401 };
+        return NextResponse.json({error: "Unauthorized"}, { status: 401 });
         }
         const body = await request.json();
         const {title, description, category} = body;
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(post);
     } catch (error) {
         console.error("Error creating post:", error);
-        return NextResponse.json({ error: "Internal Server Error" }), { status: 500 };
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
 
@@ -41,7 +41,7 @@ export async function GET() {
         return NextResponse.json(posts);
     } catch (error) {
         console.error("Error fetching posts:", error);
-        return NextResponse.json({ error: "Internal Server Error" }), { status: 500 };
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
 

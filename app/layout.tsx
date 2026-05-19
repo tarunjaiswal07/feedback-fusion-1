@@ -5,7 +5,7 @@ import { Toaster } from "sonner";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "next-themes";
+import ThemeProvider from "@/components/theme-provider";
 import { syncCurrentUser } from "@/lib/sync-user";
 
 const inter = Inter({ subsets: ["latin"] });

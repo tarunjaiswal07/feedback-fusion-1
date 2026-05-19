@@ -2,8 +2,11 @@
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes";
 export default function ThemeProvider( {children,...props} : ThemeProviderProps) {
-    <NextThemesProvider {...props}>
+    return(
+        <NextThemesProvider {...props}>
         {children}
     </NextThemesProvider>
+    )
+    
 
 }
