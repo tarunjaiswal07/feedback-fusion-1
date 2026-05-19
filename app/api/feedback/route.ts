@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { syncCurrentUser } from "@/lib/sync-user";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest): Promise<NextResponse> {
+export async function POST(request: NextRequest): Promise<Response> {
     try {
         const dbUser = await syncCurrentUser();
         if (!dbUser) { 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 }
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(): Promise<Response> {
     try {
         const posts = await prisma.post.findMany({
             include: {  
